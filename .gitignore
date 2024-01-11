@@ -39,6 +39,8 @@ bower_components
 build/Release
 
 # Dependency directories
+/dist
+/node_modules
 node_modules/
 jspm_packages/
 
@@ -125,3 +127,16 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+
+# OS
+.DS_Store
