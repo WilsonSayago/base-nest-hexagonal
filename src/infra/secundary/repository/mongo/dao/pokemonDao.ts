@@ -6,6 +6,9 @@ export type PokemonDaoDocument = HydratedDocument<PokemonDao>;
 export class PokemonDao {
   @Prop()
   name: string;
+
+  @Prop()
+  no: number;
 }
 
 export const PokemonDaoSchema = SchemaFactory.createForClass(PokemonDao);

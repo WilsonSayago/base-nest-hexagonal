@@ -2,6 +2,8 @@ import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { PokemonDao } from './mongo/dao/pokemonDao';
+import { Pokemon } from '../../../core/domain/pokemon.domain';
+import { DatabasePort } from '../../../core/port/database.port';
 
 @Injectable()
 export class PokemonRepository implements DatabasePort {
@@ -10,7 +12,15 @@ export class PokemonRepository implements DatabasePort {
     private pokemonDaoModel: Model<PokemonDao>,
   ) {}
 
-  findById(id: string): Promise<Pokemon> {
-    return this.pokemonDaoModel.findById(id);
+  async findById(id: string): Promise<Pokemon> {
+    const pokemonDao = await this.pokemonDaoModel.findById(id).exec();
+    return new Pokemon(pokemonDao._id.toString(), pokemonDao.name);
+  }
+
+  async findAll(): Promise<Pokemon[]> {
+    const pokemones = await this.pokemonDaoModel.find();
+    return pokemones.map((pokemonDao) => {
+      return new Pokemon(pokemonDao._id.toString(), pokemonDao.name);
+    });
   }
 }

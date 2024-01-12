@@ -1,4 +1,4 @@
-class Pokemon {
+export class Pokemon {
   readonly id: string;
   readonly name: string;
 
