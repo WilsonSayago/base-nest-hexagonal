@@ -3,7 +3,7 @@ export class PokemonService implements PokemonUsecase {
   constructor(dbport: DatabasePort) {
     this.dbport = dbport;
   }
-  async findById(id: number): Promise<Pokemon> {
+  async findById(id: string): Promise<Pokemon> {
     return this.dbport.findById(id);
   }
 }

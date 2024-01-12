@@ -1,16 +1,16 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
-import { PokemonDao, PokemonDaoDocument } from './mongo/dao/pokemon.dao';
 import { InjectModel } from '@nestjs/mongoose';
+import { PokemonDao } from './mongo/dao/pokemonDao';
 
 @Injectable()
-export class PokemonRepository {
+export class PokemonRepository implements DatabasePort {
   constructor(
     @InjectModel(PokemonDao.name)
-    private readonly dao: Model<PokemonDaoDocument, PokemonDao>,
+    private pokemonDaoModel: Model<PokemonDao>,
   ) {}
 
-  async findById(id: string): Promise<PokemonDao> {
-    return await this.dao.findById(id);
+  findById(id: string): Promise<Pokemon> {
+    return this.pokemonDaoModel.findById(id);
   }
 }

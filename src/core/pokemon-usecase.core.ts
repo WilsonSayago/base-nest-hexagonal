@@ -1,3 +1,3 @@
 interface PokemonUsecase {
-  findById(id: number): Promise<Pokemon>;
+  findById(id: string): Promise<Pokemon>;
 }

@@ -1,4 +1,3 @@
-
 interface DatabasePort {
-  findById(id: number): Promise<Pokemon>
+  findById(id: string): Promise<Pokemon>;
 }

@@ -1,4 +1,4 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
 export type PokemonDaoDocument = HydratedDocument<PokemonDao>;
@@ -7,3 +7,5 @@ export class PokemonDao {
   @Prop()
   name: string;
 }
+
+export const PokemonDaoSchema = SchemaFactory.createForClass(PokemonDao);
